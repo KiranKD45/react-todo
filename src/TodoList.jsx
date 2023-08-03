@@ -15,6 +15,7 @@ const TodoList = () => {
       return updateList;  
     })
     }
+    
  function removeActivity(i){
  const updatedListData = listData.filter((elem, id)=>{
     return i!= id;
@@ -34,20 +35,21 @@ const TodoList = () => {
         TODO LIST
     </div>
     <input type="text" placeholder='Enter a To-Do' value={value} onChange={(e)=>setValue(e.target.value)}/>
-    <button onClick={addTask}>Add</button>
+    <button onClick={addTask} className='btn-add'>Add</button>
+    {listData.length>=2 && <button onClick={removeAll} className='deleteAll-btn'>Delete All</button>}
 
     {
         listData!=[] && listData.map((data, i)=>{
             return (
                 <>
                 <p key={i}>
-                    <div>{data}</div>
-                   <div> <button onClick={()=>removeActivity(i)}>Delete</button></div>
+                    <div className='listItems'>{data}</div>
+                   <div> <button onClick={()=>removeActivity(i)} className='delete-btn'>Delete</button></div>
                     </p></>
             )
         }) 
     }
-    {listData.length>=2 && <button onClick={removeAll}>Delete All</button>}
+   
     
    </div>
    </>
